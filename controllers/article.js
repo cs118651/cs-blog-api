@@ -1,7 +1,7 @@
 const ArticleModel = require('../models/article');
 const _ = require('underscore');
 
-exports.getList = function (req, res, next) {
+exports.getList = function(req, res, next) {
   let articleSum = null;
 
   ArticleModel.fetch(function(err, articles) {
@@ -23,7 +23,30 @@ exports.getList = function (req, res, next) {
   });
 }
 
-exports.getPage = function (req, res, next) {
+exports.getDetail = function(req, res, next) {
+  const articleId = req.query.articleId;
+
+  ArticleModel.update({_id: articleId}, {$inc: {pv: 1}}, function(err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+
+  ArticleModel.findById(articleId, function(err, article) {
+    if (err) {
+      console.error(err);
+      res.status(500).send({
+        "message": "暂时无法获取文章详细信息!"
+      });
+    } else {
+      res.status(200).send({
+        article: article
+      });
+    }
+  })
+}
+
+exports.getPage = function(req, res, next) {
   let nextPage = req.body.nextPage;
   let articleSum = null;
   ArticleModel.fetch(function(err, articles) {
