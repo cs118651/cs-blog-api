@@ -13,6 +13,7 @@ router.all('*', function(req, res, next) {
   if (currentReqHostName === 'api.timrchen.site') {
     res.header("Access-Control-Allow-Origin", 'http://www.cs1997.cn');
   } else if (currentReqHostName === '127.0.0.1' || currentReqHostName === 'localhost') {
+    console.log('currentReqHostName:', currentReqHostName)
     res.header("Access-Control-Allow-Origin", 'http://' + currentReqHostName + ':8080');
   }
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");  
