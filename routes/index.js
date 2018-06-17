@@ -10,7 +10,7 @@ mongoose.connect(DB_URL);
 // CORS
 router.all('*', function(req, res, next) {
   let currentReqHostName = req.hostname;
-  if (currentReqHostName === 'api.timrchen.site') {
+  if (currentReqHostName === 'www.cs1997.cn') {
     res.header("Access-Control-Allow-Origin", 'http://www.cs1997.cn');
   } else if (currentReqHostName === '127.0.0.1' || currentReqHostName === 'localhost') {
     console.log('currentReqHostName:', currentReqHostName)
