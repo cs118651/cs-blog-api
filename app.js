@@ -7,6 +7,12 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 
 const app = express();
+// 静态文件跨域配置项
+const staticCORS = {
+  setHeaders: (res) => {
+    res.set('Access-Control-Allow-Origin', '*')
+  }
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -16,7 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), staticCORS));
 
 app.use('/', indexRouter);
 
