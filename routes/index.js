@@ -21,6 +21,10 @@ router.all('*', function(req, res, next) {
   next();
 });
 
+router.get('/hello', (req, res) => {
+  res.end('hello word hahahahahahahhahahha')
+})
+
 router.get('/api/article/list', Article.getList);  // 获取首页数据
 
 router.get('/api/article/detail', Article.getDetail); // 获取文章详情
