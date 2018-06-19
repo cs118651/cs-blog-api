@@ -14,7 +14,7 @@ router.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", 'http://www.cs1997.cn');
   } else if (currentReqHostName === '127.0.0.1' || currentReqHostName === 'localhost') {
     console.log('currentReqHostName:', currentReqHostName)
-    res.header("Access-Control-Allow-Origin", 'http://' + currentReqHostName + ':8080');
+    res.header("Access-Control-Allow-Origin", 'http://' + currentReqHostName);
   }
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");  
   res.header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Authorization, Accept, X-Requested-With");  
